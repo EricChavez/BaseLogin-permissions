@@ -2,6 +2,7 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }    from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { FormGroup, FormControl, Validators, FormArray,ReactiveFormsModule } from '@angular/forms';
 
 // used to create fake backend
 import { fakeBackendProvider } from './helpers/fake-backend';
@@ -23,6 +24,9 @@ import { LoginComponent } from './components/login/login.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
+import { UsersComponent } from './components/users/users.component';
+import { PermissionsComponent } from './components/permissions/permissions.component';
+import { RolesComponent } from './components/roles/roles.component';
 
 
 @NgModule({
@@ -31,7 +35,10 @@ import { RegisterComponent } from './components/register/register.component';
     LoginComponent,
     AlertComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    UsersComponent,
+    PermissionsComponent,
+    RolesComponent
     
     
   ],
@@ -40,6 +47,7 @@ import { RegisterComponent } from './components/register/register.component';
     BrowserModule,
     FormsModule,
     HttpModule,
+    ReactiveFormsModule
     
   ],
   providers: [
