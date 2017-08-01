@@ -1,25 +1,24 @@
-import { NgModule }      from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule }    from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { FormGroup, FormControl, Validators, FormArray,ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormArray, ReactiveFormsModule } from '@angular/forms';
 
 // used to create fake backend
 import { fakeBackendProvider } from './helpers/fake-backend';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
- 
-import { AppComponent }  from './app.component';
-import { routing }        from './app.routing';
+import { AppComponent } from './app.component';
+import { routing } from './app.routing';
 
-//services
+// services
 import { UserService } from './service/user.service';
 import { AuthenticationService } from './service/authentication.service';
 import { AuthGuard } from './guards/auth.guard';
-import {AlertService } from './service/alert.service'
+import { AlertService } from './service/alert.service';
 
 
-//components
+// components
 import { LoginComponent } from './components/login/login.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { HomeComponent } from './components/home/home.component';
@@ -39,8 +38,6 @@ import { RolesComponent } from './components/roles/roles.component';
     UsersComponent,
     PermissionsComponent,
     RolesComponent
-    
-    
   ],
   imports: [
     routing,
@@ -48,16 +45,15 @@ import { RolesComponent } from './components/roles/roles.component';
     FormsModule,
     HttpModule,
     ReactiveFormsModule
-    
   ],
   providers: [
     AuthenticationService,
     UserService,
     AlertService,
     AuthGuard,
-   // fakeBackendProvider,
-       // MockBackend,
-        BaseRequestOptions
+    // fakeBackendProvider,
+    // MockBackend
+    BaseRequestOptions
   ],
   bootstrap: [AppComponent]
 })

@@ -1,16 +1,26 @@
 <p>Ingresa un nuevo usuario </p>
 
 <form [formGroup]="forma" (ngSubmit)="guardarCambios()">
-  <div class="form-group row">
+  <div class="form-group row" [ngClass]="{'has-danger':!forma.controls['nombre'].valid && forma.controls['nombre'].touched }">
     <label class="col-2 col-form-label">Nombre</label>
     <div class="col-md-8">
       <input class="form-control" type="text" placeholder="Nombre de usuario" formControlName="nombre">
+      <div class="form-control-feedback" *ngIf="forma.get('nombre').errors?.required && forma.controls['nombre'].touched">
+        El nombre de usuario es necesario
+      </div>
     </div>
   </div>
-  <div class="form-group row">
+  <div class="form-group row" [ngClass]="{'has-danger':!forma.controls['correo'].valid && forma.controls['correo'].touched }">
     <label class="col-2 col-form-label">Correo</label>
     <div class="col-md-8">
       <input class="form-control" type="email" placeholder="Correo electrónico" formControlName="correo">
+      <div class="form-control-feedback" *ngIf="forma.get('correo').errors?.required && forma.controls['correo'].touched">
+        El correo es necesario
+      </div>
+      <div class="form-control-feedback" *ngIf="forma.get('correo').errors?.pattern && forma.controls['correo'].touched">
+        El correo es inválido
+      </div>
+
     </div>
   </div>
   <div class="form-group row">
@@ -27,27 +37,36 @@
       <div class="form-control-feedback" *ngIf="forma.get('password1').errors?.required">
         La contraseña es necesaria
       </div>
+      <div class="form-control-feedback" *ngIf="forma.get('password1').errors?.minlength">
+        El nombre debe contener por lo menos 8 caracteres
+      </div>
     </div>
   </div>
   <div class="form-group row" [ngClass]="{'has-danger':!forma.controls['password2'].valid}">
-    <label class="col-2 col-form-label">Contraseña</label>
+    <label class="col-2 col-form-label">Confirma Contraseña</label>
     <div class="col-8">
-
-      <input class="form-control" type="password" placeholder="Ingresa tu contraseña" formControlName="password1">
+      <input class="form-control" type="password" placeholder="Ingresa tu contraseña" formControlName="password2">
       <div class="form-control-feedback" *ngIf="forma.get('password2').errors?.required">
         La contraseña es necesaria
+      </div>
+      <div class="form-control-feedback" *ngIf="forma.get('password2').errors?.noIguales">
+        La contraseñas tienen que ser iguales
       </div>
     </div>
   </div>
 
 
+
   <div class="form-group row">
     <label class="col-2 col-form-label">&nbsp;</label>
     <div class="input-group col-md-8">
-      <button type="submit" class="btn btn-outline-primary">
+      <button type="submit" [disabled]="!forma.valid" class="btn btn-outline-primary">
         Guardar
       </button>
     </div>
   </div>
+
+  {{forma.valid}} {{forma.status}} {{forma.get('password2').errors | json }}
+
 
 </form>
