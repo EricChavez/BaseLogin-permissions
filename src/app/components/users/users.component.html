@@ -1,72 +1,103 @@
-<p>Ingresa un nuevo usuario </p>
+ <form [formGroup]="forma" (ngSubmit)="guardarCambios()">
+<div class="row">
 
-<form [formGroup]="forma" (ngSubmit)="guardarCambios()">
-  <div class="form-group row" [ngClass]="{'has-danger':!forma.controls['nombre'].valid && forma.controls['nombre'].touched }">
-    <label class="col-2 col-form-label">Nombre</label>
-    <div class="col-md-8">
-      <input class="form-control" type="text" placeholder="Nombre de usuario" formControlName="nombre">
-      <div class="form-control-feedback" *ngIf="forma.get('nombre').errors?.required && forma.controls['nombre'].touched">
-        El nombre de usuario es necesario
+  <div class="col-md-6">
+    <p>Ingresa un nuevo usuario </p>
+   
+      <div class="form-group row" [ngClass]="{'has-danger':!forma.controls['nombre'].valid && forma.controls['nombre'].touched }">
+        <label class="col-2 col-form-label">Nombre</label>
+        <div class="col-md-8">
+          <input class="form-control" type="text" placeholder="Nombre de usuario" formControlName="nombre">
+          <div class="form-control-feedback" *ngIf="forma.get('nombre').errors?.required && forma.controls['nombre'].touched">
+            El nombre de usuario es necesario
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="form-group row" [ngClass]="{'has-danger':!forma.controls['correo'].valid && forma.controls['correo'].touched }">
-    <label class="col-2 col-form-label">Correo</label>
-    <div class="col-md-8">
-      <input class="form-control" type="email" placeholder="Correo electrónico" formControlName="correo">
-      <div class="form-control-feedback" *ngIf="forma.get('correo').errors?.required && forma.controls['correo'].touched">
-        El correo es necesario
+      <div class="form-group row" [ngClass]="{'has-danger':!forma.controls['correo'].valid && forma.controls['correo'].touched }">
+        <label class="col-2 col-form-label">Correo</label>
+        <div class="col-md-8">
+          <input class="form-control" type="text" placeholder="Correo electrónico" formControlName="correo">
+          <div class="form-control-feedback" *ngIf="forma.get('correo').errors?.required && forma.controls['correo'].touched">
+            El correo es necesario
+          </div>
+          <div class="form-control-feedback" *ngIf="forma.get('correo').errors?.pattern && forma.controls['correo'].touched">
+            El correo es inválido
+          </div>
+
+        </div>
       </div>
-      <div class="form-control-feedback" *ngIf="forma.get('correo').errors?.pattern && forma.controls['correo'].touched">
-        El correo es inválido
+      <div class="form-group row" [ngClass]="{'has-danger':!forma.controls['telefono'].valid && forma.controls['telefono'].touched }">
+        <label class="col-2 col-form-label">Telefono</label>
+        <div class="col-md-8">
+          <input class="form-control" type="text" placeholder="ej. XXX-XXX-XXXX " formControlName="telefono">
+          <div class="form-control-feedback" *ngIf="forma.get('telefono').errors?.required && forma.controls['telefono'].touched">
+            El teléfono es necesario
+          </div>
+          <div class="form-control-feedback" *ngIf="forma.get('telefono').errors?.pattern && forma.controls['telefono'].touched">
+            El teléfono es inválido
+          </div>
+
+        </div>
+      </div>
+      <div class="form-group row" class="form-group row" [ngClass]="{'has-danger':!forma.controls['rol'].valid && forma.controls['rol'].touched }">
+        <label class="col-2 col-form-label">Rol</label>
+        <div class="col-md-8">
+
+          <select formControlName="rol" class="form-control">
+            <option value="">Selecciona</option>
+          <option *ngFor="let c of roles" [ngValue]="c.RoleId" >{{c.RoleName}}</option>
+</select>
+          <div class="form-control-feedback" *ngIf="forma.get('rol').errors?.required && forma.controls['rol'].touched">
+            El rol es necesario
+          </div>
+        </div>
+      </div>
+      <div class="form-group row" [ngClass]="{'has-danger':!forma.controls['password1'].valid && forma.controls['password1'].touched}">
+        <label class="col-2 col-form-label">Contraseña</label>
+        <div class="col-8">
+
+          <input class="form-control" type="password" placeholder="Ingresa tu contraseña" formControlName="password1">
+          <div class="form-control-feedback" *ngIf="forma.get('password1').errors?.required && forma.controls['password1'].touched">
+            La contraseña es necesaria
+          </div>
+          <div class="form-control-feedback" *ngIf="forma.get('password1').errors?.minlength && forma.controls['password1'].touched">
+            El nombre debe contener por lo menos 8 caracteres (Asegurate de colocar una contraseña alfanumerica)
+          </div>
+        </div>
+      </div>
+      <div class="form-group row" [ngClass]="{'has-danger':!forma.controls['password2'].valid && forma.controls['password2'].touched}">
+        <label class="col-2 col-form-label">Confirma Contraseña </label>
+        <div class="col-8">
+          <input class="form-control" type="password" placeholder="Ingresa tu contraseña" formControlName="password2">
+          <div class="form-control-feedback" *ngIf="forma.get('password2').errors?.required && forma.controls['password2'].touched">
+            La contraseña es necesaria
+          </div>
+          <div class="form-control-feedback" *ngIf="forma.get('password2').errors?.noIguales && forma.controls['password2'].touched">
+            La contraseñas tienen que ser iguales
+          </div>
+        </div>
       </div>
 
-    </div>
-  </div>
-  <div class="form-group row">
-    <label class="col-2 col-form-label">Rol de usuario</label>
-    <div class="col-md-8">
-      <input class="form-control" type="text" placeholder="Rol" formControlName="rol">
-    </div>
-  </div>
-  <div class="form-group row" [ngClass]="{'has-danger':!forma.controls['password1'].valid}">
-    <label class="col-2 col-form-label">Contraseña</label>
-    <div class="col-8">
-
-      <input class="form-control" type="password" placeholder="Ingresa tu contraseña" formControlName="password1">
-      <div class="form-control-feedback" *ngIf="forma.get('password1').errors?.required">
-        La contraseña es necesaria
-      </div>
-      <div class="form-control-feedback" *ngIf="forma.get('password1').errors?.minlength">
-        El nombre debe contener por lo menos 8 caracteres
-      </div>
-    </div>
-  </div>
-  <div class="form-group row" [ngClass]="{'has-danger':!forma.controls['password2'].valid}">
-    <label class="col-2 col-form-label">Confirma Contraseña</label>
-    <div class="col-8">
-      <input class="form-control" type="password" placeholder="Ingresa tu contraseña" formControlName="password2">
-      <div class="form-control-feedback" *ngIf="forma.get('password2').errors?.required">
-        La contraseña es necesaria
-      </div>
-      <div class="form-control-feedback" *ngIf="forma.get('password2').errors?.noIguales">
-        La contraseñas tienen que ser iguales
-      </div>
-    </div>
-  </div>
-
-
-
-  <div class="form-group row">
-    <label class="col-2 col-form-label">&nbsp;</label>
-    <div class="input-group col-md-8">
-      <button type="submit" [disabled]="!forma.valid" class="btn btn-outline-primary">
+      <div class="form-group row">
+        <label class="col-2 col-form-label">&nbsp;</label>
+        <div class="input-group col-md-8">
+          <button type="submit" [disabled]="!forma.valid" class="btn btn-outline-primary">
         Guardar
       </button>
-    </div>
+        </div>
+      </div>
+
+      <!--{{forma.valid}} {{forma.status}} -->
+       {{forma.get('correo').errors | json }}
+
+
+   
+  </div>
+  <div class="col-md-6">
+    <img src="{{ avatarsrc }}"  alt="..." class="img-thumbnail">
+    <input type="file" formControlName="avatar"  value="Elige un archivo" class="btn btn-outline-primary">
   </div>
 
-  {{forma.valid}} {{forma.status}} {{forma.get('password2').errors | json }}
+</div>
 
-
-</form>
+ </form>

@@ -11,7 +11,7 @@ export class UserService {
     validateEmail(email) {
         const headers = new Headers();
         headers.append('Content-Type', 'application/JSON');
-        let token = JSON.parse(localStorage.getItem('currentUser')).token;
+        const token = JSON.parse(localStorage.getItem('currentUser')).token;
         headers.append('Authorization', `Token ${token}`);
         const data = { email: email };
         const body = JSON.stringify(data);

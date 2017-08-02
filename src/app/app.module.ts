@@ -1,9 +1,10 @@
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { FormGroup, FormControl, Validators, FormArray, ReactiveFormsModule } from '@angular/forms';
-
+import { TextMaskModule } from 'angular2-text-mask';
 // used to create fake backend
 import { fakeBackendProvider } from './helpers/fake-backend';
 import { MockBackend, MockConnection } from '@angular/http/testing';
@@ -16,7 +17,7 @@ import { UserService } from './service/user.service';
 import { AuthenticationService } from './service/authentication.service';
 import { AuthGuard } from './guards/auth.guard';
 import { AlertService } from './service/alert.service';
-
+import { RoleService } from './service/role.service';
 
 // components
 import { LoginComponent } from './components/login/login.component';
@@ -26,7 +27,6 @@ import { RegisterComponent } from './components/register/register.component';
 import { UsersComponent } from './components/users/users.component';
 import { PermissionsComponent } from './components/permissions/permissions.component';
 import { RolesComponent } from './components/roles/roles.component';
-
 
 @NgModule({
   declarations: [
@@ -44,13 +44,15 @@ import { RolesComponent } from './components/roles/roles.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TextMaskModule
   ],
   providers: [
     AuthenticationService,
     UserService,
     AlertService,
     AuthGuard,
+    RoleService,
     // fakeBackendProvider,
     // MockBackend
     BaseRequestOptions
