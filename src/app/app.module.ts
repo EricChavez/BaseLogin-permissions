@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { FormGroup, FormControl, Validators, FormArray, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormArray, ReactiveFormsModule  } from '@angular/forms';
 import { TextMaskModule } from 'angular2-text-mask';
 // used to create fake backend
 import { fakeBackendProvider } from './helpers/fake-backend';
@@ -27,6 +27,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { UsersComponent } from './components/users/users.component';
 import { PermissionsComponent } from './components/permissions/permissions.component';
 import { RolesComponent } from './components/roles/roles.component';
+import { PasswordRecoveryComponent } from './components/password-recovery/password-recovery.component';
+import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { RolesComponent } from './components/roles/roles.component';
     RegisterComponent,
     UsersComponent,
     PermissionsComponent,
-    RolesComponent
+    RolesComponent,
+    PasswordRecoveryComponent,
+    PasswordResetComponent
   ],
   imports: [
     routing,

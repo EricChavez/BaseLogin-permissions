@@ -28,7 +28,17 @@ export class AuthenticationService {
                 }
                 return user;
             });
+    }
 
+    recover(email) {
+        const headers = new Headers();
+        headers.append('Content-Type', 'application/JSON');
+        const data = { email: email };
+        const body = JSON.stringify(data);
+        const options = new RequestOptions({ headers: headers, method: RequestMethod.Post });
+        return this.http.post('http://localhost:50/api/recover',
+            JSON.stringify(data), options)
+            .map(res => res.json());
     }
 
     logout() {
