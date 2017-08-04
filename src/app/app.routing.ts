@@ -1,3 +1,4 @@
+import { FullLayoutComponent } from './layouts/full-layout.component';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 import { PasswordRecoveryComponent } from './components/password-recovery/password-recovery.component';
 import { RolesComponent } from './components/roles/roles.component';
@@ -13,12 +14,12 @@ import { AuthGuard } from './guards/auth.guard';
 
 const APP_ROUTES: Routes = [
     {
-        path: '', component: HomeComponent,
+        path: 'home', component: FullLayoutComponent,
         children: [
             { path: 'user', component: UsersComponent },
             { path: 'permission', component: PermissionsComponent },
             { path: 'role', component: RolesComponent },
-
+            { path: '**', pathMatch: 'full', redirectTo: 'home' }
             /* { path: '**', pathMatch: 'full', redirectTo: '' }*/
         ],
         canActivate: [AuthGuard]

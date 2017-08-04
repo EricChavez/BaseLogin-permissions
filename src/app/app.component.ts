@@ -8,7 +8,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-    ngOnInit() {
+  public options = {
+    position: ["top", "right"],
+    timeOut: 5000,
+    clickToClose: true,
+    lastOnBottom: true
+  }
+  ngOnInit() {
 
-    }
+  }
 }
