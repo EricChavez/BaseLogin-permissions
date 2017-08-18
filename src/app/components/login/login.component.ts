@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private authenticationService: AuthenticationService,
-        private NotificationService: NotificationService,
+        private NotificationService_: NotificationService,
         private alertService: AlertService) { }
 
     ngOnInit() {
@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
 
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
-        //this.NotificationService.alert('hola');
     }
 
     login() {
@@ -40,8 +39,8 @@ export class LoginComponent implements OnInit {
                 this.router.navigate([this.returnUrl]);
             },
             error => {
-                const message =error.json()
-                this.NotificationService.error('Error', message.message)
+                const message = error.json()
+                this.NotificationService_.error('Error', message.message)
                 this.loading = false;
             });
     }

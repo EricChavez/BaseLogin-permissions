@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
 
   public options = {
-    position: ["top", "right"],
+    position: ['top', 'right'],
     timeOut: 5000,
     clickToClose: true,
     lastOnBottom: true

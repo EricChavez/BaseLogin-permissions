@@ -1,102 +1,125 @@
-<form [formGroup]="forma" (ngSubmit)="guardarCambios()">
-  <div class="row">
+<div class="card">
+  <div class="card-body">
 
-    <div class="col-md-6">
-      <p>Ingresa un nuevo usuario </p>
+    <form [formGroup]="forma" (ngSubmit)="guardarCambios()">
+      <div class="row">
 
-      <div class="form-group row" [ngClass]="{'has-danger':!forma.controls['UserName'].valid && forma.controls['UserName'].touched }">
-        <label class="col-2 col-form-label">Nombre</label>
-        <div class="col-md-8">
-          <input class="form-control" type="text" placeholder="Nombre de usuario" formControlName="UserName">
-          <div class="form-control-feedback" *ngIf="forma.get('UserName').errors?.required && forma.controls['UserName'].touched">
-            El nombre de usuario es necesario
-          </div>
-        </div>
-      </div>
-      <div class="form-group row" [ngClass]="{'has-danger':!forma.controls['Email'].valid && forma.controls['Email'].touched }">
-        <label class="col-2 col-form-label">Correo</label>
-        <div class="col-md-8">
-          <input class="form-control" type="text" placeholder="Correo electrónico" formControlName="Email">
-          <div class="form-control-feedback" *ngIf="forma.get('Email').errors?.required && forma.controls['Email'].touched">
-            El correo es necesario
-          </div>
-          <div class="form-control-feedback" *ngIf="forma.get('Email').errors?.pattern && forma.controls['Email'].touched">
-            El correo es inválido
+        <div class="col-md-6 col-md-offset-3">
+          <p>Ingresa un nuevo usuario </p>
+
+
+          <div class="form-group row" [ngClass]="{'has-error':!forma.controls['UserName'].valid && forma.controls['UserName'].touched }">
+            <label  class="col-sm-3 control-label">Nombre de usuario</label>
+            <div class="col-sm-7">
+              <input class="form-control input-sm" type="text" placeholder="" formControlName="UserName">             
+              <p class="text-help text-danger" *ngIf="forma.get('UserName').errors?.required && forma.controls['UserName'].touched">
+                El nombre de usuario es necesario
+              </p>
+            </div>
           </div>
 
-        </div>
-      </div>
-      <div class="form-group row" [ngClass]="{'has-danger':!forma.controls['PhoneNumber'].valid && forma.controls['PhoneNumber'].touched }">
-        <label class="col-2 col-form-label">Telefono</label>
-        <div class="col-md-8">
-          <input class="form-control" type="text" placeholder="ej. XXX-XXX-XXXX " formControlName="PhoneNumber">
-          <div class="form-control-feedback" *ngIf="forma.get('PhoneNumber').errors?.required && forma.controls['PhoneNumber'].touched">
-            El teléfono es necesario
-          </div>
-          <div class="form-control-feedback" *ngIf="forma.get('PhoneNumber').errors?.pattern && forma.controls['PhoneNumber'].touched">
-            El teléfono es inválido
-          </div>
+          <!--<div class="form-group row" [ngClass]="{'has-error':!forma.controls['UserName'].valid && forma.controls['UserName'].touched }">
+            <label class="col-4">Correo</label>
+            <div class="col-md-8">
+              <input class="form-control" type="text" placeholder="Nombre de usuario" formControlName="UserName">
+              <p class="text-danger" *ngIf="forma.get('UserName').errors?.required && forma.controls['UserName'].touched">
+                El nombre de usuario es necesario
+              </p>
+            </div>
+          </div>-->
+          <div class="form-group row" [ngClass]="{'has-error':!forma.controls['Email'].valid && forma.controls['Email'].touched }">
+            <label class="col-2 col-form-label">Correo</label>
+            <div class="col-md-8">
+              <input class="form-control" type="text" placeholder="Correo electrónico" formControlName="Email">
+              <p class="text-danger" *ngIf="forma.get('Email').errors?.required && forma.controls['Email'].touched">
+                El correo es necesario
+              </p>
+              <p class="text-danger" *ngIf="forma.get('Email').errors?.pattern && forma.controls['Email'].touched">
+                El correo es inválido
+              </p>
 
-        </div>
-      </div>
-      <div class="form-group row" class="form-group row" [ngClass]="{'has-danger':!forma.controls['RoleId'].valid && forma.controls['RoleId'].touched }">
-        <label class="col-2 col-form-label">Rol</label>
-        <div class="col-md-8">
+            </div>
+          </div>
+          <div class="form-group row" [ngClass]="{'has-danger':!forma.controls['PhoneNumber'].valid && forma.controls['PhoneNumber'].touched }">
+            <label class="col-2 col-form-label">Telefono</label>
+            <div class="col-md-8">
+              <input class="form-control" type="text" placeholder="ej. XXX-XXX-XXXX " formControlName="PhoneNumber">
+              <p class="text-danger" *ngIf="forma.get('PhoneNumber').errors?.required && forma.controls['PhoneNumber'].touched">
+                El teléfono es necesario
+              </p>
+              <p class="text-danger" *ngIf="forma.get('PhoneNumber').errors?.pattern && forma.controls['PhoneNumber'].touched">
+                El teléfono es inválido
+              </p>
 
-          <select formControlName="RoleId" class="form-control">
+            </div>
+          </div>
+          <div class="form-group row" class="form-group row" [ngClass]="{'has-danger':!forma.controls['RoleId'].valid && forma.controls['RoleId'].touched }">
+            <label class="col-2 col-form-label">Rol</label>
+            <div class="col-md-8">
+
+              <select formControlName="RoleId" class="form-control">
             <option value="">Selecciona</option>
           <option *ngFor="let c of roles" [ngValue]="c.RoleId" >{{c.RoleName}}</option>
 </select>
-          <div class="form-control-feedback" *ngIf="forma.get('RoleId').errors?.required && forma.controls['RoleId'].touched">
-            El rol es necesario
+              <div class="form-control-feedback" *ngIf="forma.get('RoleId').errors?.required && forma.controls['RoleId'].touched">
+                El rol es necesario
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="form-group row" [ngClass]="{'has-danger':!forma.controls['Password1'].valid && forma.controls['Password1'].touched}">
-        <label class="col-2 col-form-label">Contraseña</label>
-        <div class="col-8">
+          <div class="form-group row" [ngClass]="{'has-danger':!forma.controls['Password1'].valid && forma.controls['Password1'].touched}">
+            <label class="col-2 col-form-label">Contraseña</label>
+            <div class="col-8">
 
-          <input class="form-control" type="password" placeholder="Ingresa tu contraseña" formControlName="Password1">
-          <div class="form-control-feedback" *ngIf="forma.get('Password1').errors?.required && forma.controls['Password1'].touched">
-            La contraseña es necesaria
+              <input class="form-control" type="password" placeholder="Ingresa tu contraseña" formControlName="Password1">
+              <div class="form-control-feedback" *ngIf="forma.get('Password1').errors?.required && forma.controls['Password1'].touched">
+                La contraseña es necesaria
+              </div>
+              <div class="form-control-feedback" *ngIf="forma.get('Password1').errors?.minlength && forma.controls['Password1'].touched">
+                El nombre debe contener por lo menos 8 caracteres (Asegurate de colocar una contraseña alfanumerica)
+              </div>
+            </div>
           </div>
-          <div class="form-control-feedback" *ngIf="forma.get('Password1').errors?.minlength && forma.controls['Password1'].touched">
-            El nombre debe contener por lo menos 8 caracteres (Asegurate de colocar una contraseña alfanumerica)
+          <div class="form-group row" [ngClass]="{'has-danger':!forma.controls['Password2'].valid && forma.controls['Password2'].touched}">
+            <label class="col-2 col-form-label">Confirma Contraseña </label>
+            <div class="col-8">
+              <input class="form-control" type="password" placeholder="Ingresa tu contraseña" formControlName="Password2">
+              <div class="form-control-feedback" *ngIf="forma.get('Password2').errors?.required && forma.controls['Password2'].touched">
+                La contraseña es necesaria
+              </div>
+              <div class="form-control-feedback" *ngIf="forma.get('Password2').errors?.noIguales && forma.controls['Password2'].touched">
+                La contraseñas tienen que ser iguales
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="form-group row" [ngClass]="{'has-danger':!forma.controls['Password2'].valid && forma.controls['Password2'].touched}">
-        <label class="col-2 col-form-label">Confirma Contraseña </label>
-        <div class="col-8">
-          <input class="form-control" type="password" placeholder="Ingresa tu contraseña" formControlName="Password2">
-          <div class="form-control-feedback" *ngIf="forma.get('Password2').errors?.required && forma.controls['Password2'].touched">
-            La contraseña es necesaria
-          </div>
-          <div class="form-control-feedback" *ngIf="forma.get('Password2').errors?.noIguales && forma.controls['Password2'].touched">
-            La contraseñas tienen que ser iguales
-          </div>
-        </div>
-      </div>
 
-      <div class="form-group row">
-        <label class="col-2 col-form-label">&nbsp;</label>
-        <div class="input-group col-md-8">
-          <button type="submit" [disabled]="!forma.valid" class="btn btn-outline-primary">
+          <div class="form-group row">
+            <label class="col-2 col-form-label">&nbsp;</label>
+            <div class="input-group col-md-8">
+              <button type="submit" [disabled]="!forma.valid" class="btn btn-outline-primary">
         Guardar
       </button>
+            </div>
+          </div>
+
+          <!--{{forma.valid}} {{forma.status}} -->
+
+
+
+
         </div>
+
       </div>
 
-      <!--{{forma.valid}} {{forma.status}} -->
-   
+    </form>
 
-
-
-    </div>
 
   </div>
+</div>
 
-</form>
+
+
+
+
 <!-- <div class="col-md-6">
     <img src="{{ avatarsrc }}"  alt="..." class="img-thumbnail">
     <input type="file" formControlName="avatar"  value="Elige un archivo" class="btn btn-outline-primary">

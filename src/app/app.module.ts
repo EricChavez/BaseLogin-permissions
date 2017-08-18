@@ -10,13 +10,14 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ng2-bootstrap/dropdown';
 import { TabsModule } from 'ng2-bootstrap/tabs';
-
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 // used to create fake backend
 import { fakeBackendProvider } from './helpers/fake-backend';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
+
 
 // services
 import { UserService } from './service/user.service';
@@ -29,7 +30,7 @@ import { NotificationService } from './service/notification.service';
 // components
 import { LoginComponent } from './components/login/login.component';
 import { AlertComponent } from './components/alert/alert.component';
-import { HomeComponent } from './components/home/home.component';
+
 import { RegisterComponent } from './components/register/register.component';
 import { UsersComponent } from './components/users/users.component';
 import { PermissionsComponent } from './components/permissions/permissions.component';
@@ -39,21 +40,25 @@ import { PasswordResetComponent } from './components/password-reset/password-res
 
 
 // template components
+import { NAV_DROPDOWN_DIRECTIVES } from './shared/nav-dropdown.directive';
 import { SIDEBAR_TOGGLE_DIRECTIVES } from './shared/sidebar.directive';
 import { AsideToggleDirective } from './shared/aside.directive';
 import { BreadcrumbsComponent } from './shared/breadcrumb.component';
-import { NAV_DROPDOWN_DIRECTIVES } from './shared/nav-dropdown.directive';
 
-//Layouts
+
+// Layouts
 import { FullLayoutComponent } from './layouts/full-layout.component';
-import { SimpleLayoutComponent } from './layouts/simple-layout.component';
+import { HeaderComponent } from './components/header/header.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     AlertComponent,
-    HomeComponent,
+   
     RegisterComponent,
     UsersComponent,
     PermissionsComponent,
@@ -61,11 +66,13 @@ import { SimpleLayoutComponent } from './layouts/simple-layout.component';
     PasswordRecoveryComponent,
     PasswordResetComponent,
     SIDEBAR_TOGGLE_DIRECTIVES,
-    SIDEBAR_TOGGLE_DIRECTIVES,
     AsideToggleDirective,
     BreadcrumbsComponent,
     FullLayoutComponent,
-    SimpleLayoutComponent
+    NAV_DROPDOWN_DIRECTIVES,
+    HeaderComponent,
+    MenuComponent,
+    BreadcrumbComponent
   ],
   imports: [
     routing,
@@ -86,8 +93,6 @@ import { SimpleLayoutComponent } from './layouts/simple-layout.component';
     AuthGuard,
     RoleService,
     NotificationService,
-    // fakeBackendProvider,
-    // MockBackend
     BaseRequestOptions
   ],
   bootstrap: [AppComponent]
