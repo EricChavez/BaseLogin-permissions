@@ -42,6 +42,7 @@ import { FullLayoutComponent } from './layouts/full-layout.component';
 import { HeaderComponent } from './components/header/header.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import { AdduserComponent } from './components/adduser/adduser.component';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
     FullLayoutComponent,
     HeaderComponent,
     MenuComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    AdduserComponent
   ],
   imports: [
     routing,

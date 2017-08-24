@@ -26,18 +26,27 @@ export class UserService {
     }
 
     CreateUser(user: User) {
-        console.log(user);
         const headers = new Headers();
         headers.append('Content-Type', 'application/JSON');
         const token = JSON.parse(localStorage.getItem('currentUser')).token;
         headers.append('Authorization', `Token ${token}`);
         const body = JSON.stringify(user);
-        console.log(body);
         const options = new RequestOptions({ headers: headers, method: RequestMethod.Post });
-        return this.http.post('http://localhost:50/api/user/CreateUser', body, options)
+        return this.http.post('http://localhost:50/api/user/createuser', body, options)
             .map(res => res.json(),
             err => this.NotificationService_.error('Error', err.message)
             );
+    }
 
+    GetUsers() {
+        const headers = new Headers();
+        headers.append('Content-Type', 'application/JSON');
+        const token = JSON.parse(localStorage.getItem('currentUser')).token;
+        headers.append('Authorization', `Token ${token}`);
+        const options = new RequestOptions({ headers: headers, method: RequestMethod.Get });
+        return this.http.get('http://localhost:50/api/user/getusers', options)
+            .map(res => res.json(),
+            err => this.NotificationService_.error('Error', err.message)
+            );
     }
 }
