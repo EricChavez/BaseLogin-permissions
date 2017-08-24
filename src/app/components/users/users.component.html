@@ -9,88 +9,77 @@
 
 
           <div class="form-group row" [ngClass]="{'has-error':!forma.controls['UserName'].valid && forma.controls['UserName'].touched }">
-            <label  class="col-sm-3 control-label">Nombre de usuario</label>
+            <label class="col-sm-3 control-label">Nombre de usuario</label>
             <div class="col-sm-7">
-              <input class="form-control input-sm" type="text" placeholder="" formControlName="UserName">             
+              <input class="form-control input-sm" type="text" placeholder="" formControlName="UserName">
               <p class="text-help text-danger" *ngIf="forma.get('UserName').errors?.required && forma.controls['UserName'].touched">
                 El nombre de usuario es necesario
               </p>
             </div>
           </div>
 
-          <!--<div class="form-group row" [ngClass]="{'has-error':!forma.controls['UserName'].valid && forma.controls['UserName'].touched }">
-            <label class="col-4">Correo</label>
-            <div class="col-md-8">
-              <input class="form-control" type="text" placeholder="Nombre de usuario" formControlName="UserName">
-              <p class="text-danger" *ngIf="forma.get('UserName').errors?.required && forma.controls['UserName'].touched">
-                El nombre de usuario es necesario
-              </p>
-            </div>
-          </div>-->
           <div class="form-group row" [ngClass]="{'has-error':!forma.controls['Email'].valid && forma.controls['Email'].touched }">
-            <label class="col-2 col-form-label">Correo</label>
-            <div class="col-md-8">
-              <input class="form-control" type="text" placeholder="Correo electrónico" formControlName="Email">
-              <p class="text-danger" *ngIf="forma.get('Email').errors?.required && forma.controls['Email'].touched">
-                El correo es necesario
+            <label class="col-sm-3 control-label">Email:</label>
+            <div class="col-sm-7">
+              <input class="form-control input-sm" type="text" placeholder="" formControlName="Email">
+              <p class="text-help text-danger" *ngIf="forma.get('Email').errors?.required && forma.controls['Email'].touched">
+                El email es necesario
               </p>
-              <p class="text-danger" *ngIf="forma.get('Email').errors?.pattern && forma.controls['Email'].touched">
-                El correo es inválido
-              </p>
-
             </div>
           </div>
-          <div class="form-group row" [ngClass]="{'has-danger':!forma.controls['PhoneNumber'].valid && forma.controls['PhoneNumber'].touched }">
-            <label class="col-2 col-form-label">Telefono</label>
-            <div class="col-md-8">
-              <input class="form-control" type="text" placeholder="ej. XXX-XXX-XXXX " formControlName="PhoneNumber">
-              <p class="text-danger" *ngIf="forma.get('PhoneNumber').errors?.required && forma.controls['PhoneNumber'].touched">
-                El teléfono es necesario
-              </p>
-              <p class="text-danger" *ngIf="forma.get('PhoneNumber').errors?.pattern && forma.controls['PhoneNumber'].touched">
-                El teléfono es inválido
-              </p>
 
+          <div class="form-group row" [ngClass]="{'has-error':!forma.controls['PhoneNumber'].valid && forma.controls['PhoneNumber'].touched }">
+            <label class="col-sm-3 control-label">Telefono:</label>
+            <div class="col-sm-7">
+              <input class="form-control input-sm" type="text" placeholder="" formControlName="PhoneNumber">
+              <p class="text-help text-danger" *ngIf="forma.get('PhoneNumber').errors?.required && forma.controls['PhoneNumber'].touched">
+                El Telefono es necesario
+              </p>
             </div>
           </div>
-          <div class="form-group row" class="form-group row" [ngClass]="{'has-danger':!forma.controls['RoleId'].valid && forma.controls['RoleId'].touched }">
-            <label class="col-2 col-form-label">Rol</label>
-            <div class="col-md-8">
 
-              <select formControlName="RoleId" class="form-control">
+
+          <div class="form-group row" [ngClass]="{'has-error':!forma.controls['RoleId'].valid && forma.controls['RoleId'].touched }">
+            <label class="col-sm-3 control-label">Rol:</label>
+            <div class="col-sm-7">
+              <select formControlName="RoleId" class="form-control input-sm">
             <option value="">Selecciona</option>
           <option *ngFor="let c of roles" [ngValue]="c.RoleId" >{{c.RoleName}}</option>
 </select>
-              <div class="form-control-feedback" *ngIf="forma.get('RoleId').errors?.required && forma.controls['RoleId'].touched">
+              <p class="text-help text-danger" *ngIf="forma.get('RoleId').errors?.required && forma.controls['RoleId'].touched">
                 El rol es necesario
-              </div>
+              </p>
             </div>
           </div>
-          <div class="form-group row" [ngClass]="{'has-danger':!forma.controls['Password1'].valid && forma.controls['Password1'].touched}">
-            <label class="col-2 col-form-label">Contraseña</label>
-            <div class="col-8">
 
-              <input class="form-control" type="password" placeholder="Ingresa tu contraseña" formControlName="Password1">
-              <div class="form-control-feedback" *ngIf="forma.get('Password1').errors?.required && forma.controls['Password1'].touched">
+
+
+          <div class="form-group row" [ngClass]="{'has-error':!forma.controls['Password1'].valid && forma.controls['Password1'].touched }">
+            <label class="col-sm-3 control-label">Contraseña:</label>
+            <div class="col-sm-7">
+              <input class="form-control input-sm" type="text" placeholder="" formControlName="Password1">
+              <p class="text-help text-danger" *ngIf="forma.get('Password1').errors?.required && forma.controls['Password1'].touched">
                 La contraseña es necesaria
-              </div>
-              <div class="form-control-feedback" *ngIf="forma.get('Password1').errors?.minlength && forma.controls['Password1'].touched">
-                El nombre debe contener por lo menos 8 caracteres (Asegurate de colocar una contraseña alfanumerica)
-              </div>
+              </p>
+              <p class="text-help text-danger" *ngIf="forma.get('Password1').errors?.minlength && forma.controls['Password1'].touched">
+                La contraseña debe contener por lo menos 8 caracteres (Asegurate de colocar una contraseña alfanumerica)
+              </p>
             </div>
           </div>
-          <div class="form-group row" [ngClass]="{'has-danger':!forma.controls['Password2'].valid && forma.controls['Password2'].touched}">
-            <label class="col-2 col-form-label">Confirma Contraseña </label>
-            <div class="col-8">
-              <input class="form-control" type="password" placeholder="Ingresa tu contraseña" formControlName="Password2">
-              <div class="form-control-feedback" *ngIf="forma.get('Password2').errors?.required && forma.controls['Password2'].touched">
+
+          <div class="form-group row" [ngClass]="{'has-error':!forma.controls['Password2'].valid && forma.controls['Password2'].touched }">
+            <label class="col-sm-3 control-label">Repite la Contraseña:</label>
+            <div class="col-sm-7">
+              <input class="form-control input-sm" type="text" placeholder="" formControlName="Password2">
+              <p class="text-help text-danger" *ngIf="forma.get('Password2').errors?.required && forma.controls['Password2'].touched">
                 La contraseña es necesaria
-              </div>
-              <div class="form-control-feedback" *ngIf="forma.get('Password2').errors?.noIguales && forma.controls['Password2'].touched">
+              </p>
+              <p class="text-help text-danger" *ngIf="forma.get('Password2').errors?.noIguales && forma.controls['Password2'].touched">
                 La contraseñas tienen que ser iguales
-              </div>
+              </p>
             </div>
           </div>
+
 
           <div class="form-group row">
             <label class="col-2 col-form-label">&nbsp;</label>

@@ -9,13 +9,13 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthGuard } from './guards/auth.guard';
 
-
-
 const APP_ROUTES: Routes = [
     {
         path: 'home', component: FullLayoutComponent,
         children: [
             { path: 'user', component: UsersComponent },
+            { path: 'user/add', component: UsersComponent },
+            { path: 'user/edit/:id', component: UsersComponent },
             { path: 'permission', component: PermissionsComponent },
             { path: 'role', component: RolesComponent },
             { path: '**', pathMatch: 'full', redirectTo: 'home' }

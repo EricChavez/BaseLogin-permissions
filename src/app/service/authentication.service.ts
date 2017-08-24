@@ -1,3 +1,4 @@
+import { NotificationService } from './notification.service';
 import { NotificationsService } from 'angular2-notifications';
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response, RequestOptions, RequestMethod } from '@angular/http';
@@ -9,6 +10,7 @@ import 'rxjs/add/operator/map';
 export class AuthenticationService {
     constructor(
         private http: Http,
+        private NotificationService_: NotificationService
     ) { }
 
     login(username: string, password: string) {
@@ -23,10 +25,8 @@ export class AuthenticationService {
         return this.http.post('http://localhost:50/api/authenticate',
             JSON.stringify(data), options)
             .map((response: Response) => {
-                // login successful if there's a jwt token in the response
-                let user = response.json();
+                const user = response.json();
                 if (user && user.token) {
-                    // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user));
                 }
                 return user;
@@ -43,11 +43,29 @@ export class AuthenticationService {
             JSON.stringify(data), options)
             .map(res => {
                 res.json();
-
-            }, err => {
-
-
+            },
+            error => {
+                const message = error.json()
+                this.NotificationService_.error('Error', message.message)
             });
+    }
+
+    reset(token, password) {
+        const headers = new Headers();
+        headers.append('Content-Type', 'application/JSON');
+        const data = { token: token, password: password };
+        const body = JSON.stringify(data);
+        const options = new RequestOptions({ headers: headers, method: RequestMethod.Post });
+        return this.http.post('http://localhost:50/api/reset',
+            JSON.stringify(data), options)
+            .map(res => {
+                res.json();
+            },
+            error => {
+                const message = error.json()
+                this.NotificationService_.error('Error', message.message)
+            });
+
     }
 
 
@@ -64,7 +82,7 @@ export class AuthenticationService {
     }
 
     logout() {
-        // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
     }
+
 }

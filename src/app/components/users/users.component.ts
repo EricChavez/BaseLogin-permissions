@@ -1,3 +1,4 @@
+import { NotificationService } from './../../service/notification.service';
 import { User } from './../../models/user';
 import { RoleService } from './../../service/role.service';
 import { UserService } from './../../service/user.service';
@@ -19,6 +20,7 @@ export class UsersComponent implements OnInit {
   constructor(
     private _UserService: UserService,
     private _RoleService: RoleService,
+    private NotificationService_: NotificationService
 
 
   ) {
@@ -80,21 +82,10 @@ export class UsersComponent implements OnInit {
     this.user.RoleId = this.forma.value.RoleId;
     this.user.Status = true;
     this._UserService.CreateUser(this.user)
-    .subscribe(data => console.log(data));
-    console.log(this.user);
+      .subscribe(data => {
+        this.NotificationService_.success('Correcto', data.message)
+      })
   }
 
 }
 
-
-
-/* this.forma.controls['correo'].setValidators([
-       Validators.required,
-       Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),
-       this.existeCorreo.bind(this)
-     ]);*/
-
-
-    /*this.forma.controls['correo'].statusChanges.subscribe(data => {
-
-    })*/

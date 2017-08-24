@@ -11,7 +11,7 @@ export class NotificationService {
     constructor(private NotificationsService: NotificationsService) {
     }
 
-    success(tittle: string, Message:string) {
+    success(tittle: string, Message: string) {
 
         this.NotificationsService.success(
             tittle,
@@ -20,13 +20,13 @@ export class NotificationService {
                 timeOut: 5000,
                 showProgressBar: true,
                 pauseOnHover: false,
-                clickToClose: false,
-                maxLength: 10
+                clickToClose: false
+                //maxLength: 10
             }
         )
     }
 
-    error(tittle: string, Message:string) {
+    error(tittle: string, Message: string) {
         this.NotificationsService.error(
             tittle,
             Message,
